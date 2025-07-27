@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TastyTrail Express</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fffdf9;
+      color: #333;
+    }
+
+    nav {
+      background-color: #ff5722;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav h1 {
+      color: #fff;
+      font-size: 1.8rem;
+      margin: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      background: url('https://i.pinimg.com/originals/fa/e9/aa/fae9aa88452a6d1c1459526098ee13dc.jpg') no-repeat center center/cover;
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 600px;
+    }
+
+    .flexbox {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 250px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .quote {
+      font-style: italic;
+      padding: 15px;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      background: #ff5722;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
+      }
+
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1>🍽️ TastyTrail Express</h1>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="signup.html">Signup</a>
+      <a href="contact.html">Contact</a>
+      
+      
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h2>Deliciousness Delivered</h2>
+    <p>"Good food is the foundation of genuine happiness."</p>
+  </div>
+
+  <div class="flexbox">
+
+    <!-- START All food items in one FLEX container -->
+
+    <div class="card">
+      <img src="https://joyfoodsunshine.com/wp-content/uploads/2022/08/fluffy-pancakes-from-scratch-1.jpg" alt="Pancakes">
+      <p class="quote">“Start your day sunny side up.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.q3UCgQpspWbl06DQ7zbwYgHaHa?pid=Api&P=0&h=220" alt="Omelette">
+      <p class="quote">“Morning fuel with a punch!”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://tse4.mm.bing.net/th/id/OIP.cGpGr1CEEVNEpkmIdrK9KwHaJi?pid=Api&P=0&h=220" alt="Sandwich">
+      <p class="quote">“Happiness between two slices.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.UyXaDth-pAyEa6iU0BfgbwHaFj?pid=Api&P=0&h=220" alt="Fries">
+      <p class="quote">“Crispy joy in every bite.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://tse1.mm.bing.net/th/id/OIP.83qMc2nPCY_sUNHBNAf2BwHaEM?pid=Api&P=0&h=220" alt="Biryani">
+      <p class="quote">“Aromatic adventure on your plate.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://as2.ftcdn.net/v2/jpg/02/29/77/55/1000_F_229775587_WJmeYBgf0tpvuDnspQtjWvrMJ6skrloD.jpg" alt="Thali">
+      <p class="quote">“A mini festival of flavors.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://elavegan.com/wp-content/uploads/2020/10/vegan-spicy-noodles-in-bowl-with-hot-sauce-and-chopsticks-1151x1536.jpg" alt="Noodles">
+      <p class="quote">“Slurp the stress away.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.freeimages.com/images/large-previews/adb/steak-1323129.jpg" alt="Steak">
+      <p class="quote">“End your day the savory way.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://inbloombakery.com/wp-content/uploads/2021/05/Chocolate-Berry-Cake-2-1.jpg" alt="Cake">
+      <p class="quote">“Stressed spelled backwards is desserts.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://www.glenwoodnyc.com/wp-content/uploads/2023/07/AdobeStock_172793547-scaled.jpg" alt="Ice Cream">
+      <p class="quote">“Cool down with sweetness.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://coffeewithdamian.com/wp-content/uploads/2022/12/Coffee-Quotes-4.jpg" alt="Coffee">
+      <p class="quote">“Liquid energy for champions.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://static.vecteezy.com/system/resources/previews/022/454/670/large_2x/mix-fruit-juice-in-a-glass-with-fresh-fruits-generative-ai-free-photo.jpg" alt="Juice">
+      <p class="quote">“Sip the natural goodness.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://www.jocooks.com/wp-content/uploads/2020/08/ground-beef-tacos-1-12.jpg" alt="Tacos">
+      <p class="quote">“Spicy, tangy, and truly desi.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://www.thedailymeal.com/img/gallery/the-healthiest-burger-king-items-you-can-eat/l-intro-1671467286.jpg" alt="Burger">
+      <p class="quote">“Every bite is a new story.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://insanelygoodrecipes.com/wp-content/uploads/2022/07/Chicken-Mango-Salad-with-Cucumber-and-Tomatoes.jpg" alt="Salad">
+      <p class="quote">“Eat green, stay lean.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://www.indianveggiedelight.com/wp-content/uploads/2022/11/how-to-make-sprouts-featured.jpg" alt="Sprouts">
+      <p class="quote">“Clean food for a fresh mood.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://s.zentrum-der-gesundheit.de/img/cheese-nuggets" alt="Nuggets">
+      <p class="quote">“Tiny bites of joy.”</p>
+    </div>
+
+    <div class="card">
+      <img src="http://2.bp.blogspot.com/-xKZmaz86O8o/UxC9_-NJSnI/AAAAAAAAAcI/kU_TsyBSR80/s1600/pizza.jpg" alt="Pizza">
+      <p class="quote">“Fun food for little foodies.”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/chattanooga/Buffet_Rodizio_Grill_60830aa6-4815-418c-9605-f9e956b3ac5c.jpg" alt="Buffet">
+      <p class="quote">“Feast mode: ON!”</p>
+    </div>
+
+    <div class="card">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.KC9dzqC-dXwYPgMFVpYOfwHaE7?pid=Api&P=0&h=220" alt="Cocktails">
+      <p class="quote">“Raise a toast to taste.”</p>
+    </div>
+
+    <!-- Add more cards below if needed -->
+
+  </div>
+
+  <footer>
+    <p>© 2025 TastyTrail Express. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

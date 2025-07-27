@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us - TastyTrail Express</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff8f0;
+      color: #333;
+    }
+
+    nav {
+      background-color: #ff6347;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      margin: 0;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 40px 20px;
+    }
+
+    .about-section {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      color: #ff6347;
+    }
+
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .food-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .food-card:hover {
+      transform: scale(1.02);
+    }
+
+    .food-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .food-card h3 {
+      margin: 10px;
+      color: #ff6347;
+    }
+
+    .food-card p {
+      padding: 0 10px 10px;
+      font-size: 14px;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <h1>🍽️ TastyTrail Express</h1>
+    <div>
+     
+      <a href="index.html">Home</a>
+      <a href="food.html">Menu</a>
+      <a href="order-history.html">Orders</a>
+      <a href="contact.html">Contact</a>
+      
+    </div>
+  </nav>
+
+  <!-- About Section -->
+  <div class="container">
+    <div class="about-section">
+      <h2>About Our Delicious Journey</h2>
+      <p>
+        At TastyTrail Express, we bring flavors from every corner of the world onto your plate. We source fresh ingredients and serve a variety of dishes that are both traditional and modern. Here's a glimpse of our top 10 dishes loved by all:
+      </p>
+
+      <div class="food-grid">
+        <!-- Food Cards -->
+        <div class="food-card">
+          <img src="https://wallpaperaccess.com/full/8734267.jpg" alt="Biryani">
+          <h3>Biryani</h3>
+          <p>Aromatic basmati rice cooked with flavorful spices and tender meat or veggies.</p>
+        </div>
+        <div class="food-card">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.HMZEN3vKKzM9k3PTi_AtMQHaHa?pid=Api&P=0&h=220" alt="Burger">
+          <h3>Cheese Burger</h3>
+          <p>Grilled patty with melted cheese, fresh veggies, and sauces in a toasted bun.</p>
+        </div>
+        <div class="food-card">
+          <img src="https://tse3.mm.bing.net/th/id/OIP.grG-3e-ni0CYmimtA-SouQHaFw?pid=Api&P=0&h=220" alt="Pizza">
+          <h3>Italian Pizza</h3>
+          <p>Thin crust pizza with fresh mozzarella, basil, tomato sauce, and toppings of choice.</p>
+        </div>
+        <div class="food-card">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.nb0Oi70AKwnua73TQuDS5QHaLH?pid=Api&P=0&h=220" alt="Noodles">
+          <h3>Spicy Noodles</h3>
+          <p>Stir-fried noodles with veggies and your choice of chicken or paneer.</p>
+        </div>
+        <div class="food-card">
+          <img src="https://tse2.mm.bing.net/th/id/OIP.6Nx_C1m4YCujBiHe48YpHAHaE8?pid=Api&P=0&h=220" alt="Dosa">
+          <h3>Masala Dosa</h3>
+          <p>South Indian crispy dosa stuffed with spicy potato masala, served with chutneys.</p>
+        </div>
+        <div class="food-card">
+          <img src="https://www.sharmispassions.com/wp-content/uploads/2020/03/WhiteSaucePasta6.jpg" alt="Pasta">
+          <h3>White Sauce Pasta</h3>
+          <p>Creamy pasta cooked with fresh veggies and herbs in rich white sauce.</p>
+        </div>
+        <div class="food-card">
+          <img src="https://tse3.mm.bing.net/th/id/OIP.cHarsWSdDEwGtCnQcFMEQQHaEo?pid=Api&P=0&h=220" alt="Chaat">
+          <h3>Chaat</h3>
+          <p>Spicy, tangy Indian street food made with fried crisps, potatoes, and chutneys.</p>
+        </div>
+        <div class="food-card">
+          <img src="https://tse2.mm.bing.net/th/id/OIP.mD9uvqMGLhaAxor-MWFSiQHaKX?pid=Api&P=0&h=220" alt="Chocolate Lava Cake">
+           <h3>Chocolate Lava Cake</h3>
+           <p>Warm, rich chocolate cake with a gooey molten center served with a scoop of vanilla ice cream.</p>
+        </div>
+
+        <div class="food-card">
+           <img src="https://takestwoeggs.com/wp-content/uploads/2021/08/No-Bake-Mango-Cheesecake-Takestwoeggs-Final-sq.jpg" alt="Mango Cheesecake">
+            <h3>Mango Cheesecake</h3>
+            <p>Delicious no-bake cheesecake layered with fresh mango puree and a buttery biscuit base.</p>
+        </div>
+        <div class="food-card">
+          <img src="https://vismaifood.com/storage/app/uploads/public/de8/89b/c96/thumb__1200_0_0_0_auto.jpg" alt="Fried Rice">
+          <h3>Veg Fried Rice</h3>
+          <p>Stir-fried rice with colorful vegetables and a dash of soy sauce and spices.</p>
+        </div>
+        <div class="food-card">
+          <img src="https://www.igamarketplace.com.au/wp-content/uploads/2023/03/Ice-Cream-Sundae.jpg" alt="Ice Cream">
+          <h3>Ice Cream Sundae</h3>
+          <p>Chilled dessert made with layers of ice cream, chocolate sauce, and nuts.</p>
+        </div>
+        <div class="food-card">
+          <img src="https://tse2.mm.bing.net/th/id/OIP.Pa_8adKhrJqFRut_GORL-AHaHa?pid=Api&P=0&h=220" alt="Gulab Jamun">
+          <h3>Gulab Jamun</h3>
+          <p>Sweet Indian dessert made with milk solids and soaked in sugar syrup.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 TastyTrail Express | Designed with ❤️ by Jagan</p>
+  </footer>
+
+</body>
+</html>

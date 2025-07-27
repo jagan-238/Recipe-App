@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f2f2f2;
+    }
+    h2 {
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+    .summary {
+      margin-top: 20px;
+    }
+    .summary div {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    #checkoutBtn {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    #message {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Checkout</h2>
+  <div class="container">
+    <div id="cartItems"></div>
+
+    <div class="summary" id="summary"></div>
+
+    <input type="text" id="address" placeholder="Enter Delivery Address" required />
+    <button id="checkoutBtn">Checkout</button>
+
+    <div id="message"></div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDWoalk1LmrdNdngG_jCA2wzDu0_rxR6Oc",
+      authDomain: "web-b43.firebaseapp.com",
+      databaseURL: "https://web-b43-default-rtdb.firebaseio.com",
+      projectId: "web-b43",
+      storageBucket: "web-b43.appspot.com",
+      messagingSenderId: "1043699448922",
+      appId: "1:1043699448922:web:75aca8f58416f651e4ec63",
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.database();
+    const auth = firebase.auth();
+
+    let cartItems = [];
+    let deliveryCharge = Math.floor(Math.random() * 41) + 10;
+
+    auth.onAuthStateChanged(user => {
+      if (!user) return (window.location.href = "login.html");
+
+      db.ref(`cart/${user.uid}`).once("value", snapshot => {
+        cartItems = Object.values(snapshot.val() || {});
+        displayCart();
+        calculateTotal();
+      });
+
+      document.getElementById("checkoutBtn").onclick = function () {
+        const address = document.getElementById("address").value.trim();
+        if (!address) return alert("Please enter your address.");
+
+        const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
+        const gst = +(subtotal * 0.18).toFixed(2);
+        const platformFee = 10;
+        const donation = 1;
+        const grandTotal = +(subtotal + gst + platformFee + donation + deliveryCharge).toFixed(2);
+
+        const orderData = {
+          items: cartItems,
+          address,
+          subtotal,
+          gst,
+          platformFee,
+          donation,
+          deliveryCharge,
+          grandTotal,
+          createdAt: new Date().toLocaleString()
+        };
+
+        const messageBox = document.getElementById("message");
+        messageBox.innerText = "Your food is being prepared...";
+
+        setTimeout(() => {
+          messageBox.innerText = "Your order has been dispatched...";
+          setTimeout(() => {
+            messageBox.innerText = "Your order has been successfully delivered!";
+
+            db.ref(`orders/${user.uid}`).push(orderData);
+            db.ref(`cart/${user.uid}`).remove();
+          }, 5000);
+        }, 1000);
+      };
+    });
+
+    function displayCart() {
+      const container = document.getElementById("cartItems");
+      container.innerHTML = "";
+      cartItems.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `
+          <div>${item.name} (x${item.qty})</div>
+          <div>₹${item.price * item.qty}</div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function calculateTotal() {
+      const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
+      const gst = +(subtotal * 0.18).toFixed(2);
+      const platformFee = 10;
+      const donation = 1;
+      const grandTotal = +(subtotal + gst + platformFee + donation + deliveryCharge).toFixed(2);
+
+      document.getElementById("summary").innerHTML = `
+        <div><span>Subtotal</span><span>₹${subtotal}</span></div>
+        <div><span>GST (18%)</span><span>₹${gst}</span></div>
+        <div><span>Platform Fee</span><span>₹10</span></div>
+        <div><span>Donation</span><span>₹1</span></div>
+        <div><span>Delivery Charge</span><span>₹${deliveryCharge}</span></div>
+        <div style="font-weight:bold"><span>Grand Total</span><span>₹${grandTotal}</span></div>
+      `;
+    }
+  </script>
+</body>
+</html>

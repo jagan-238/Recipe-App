@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Order History | Online Food App</title>
+  <title>Order History | Tasty-trail</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
@@ -50,20 +50,16 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      transition: transform 0.2s ease;
-    }
-
-    .order:hover {
-      transform: scale(1.02);
+      position: relative;
     }
 
     .order h2 {
       color: #ffdd57;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
     .order p {
-      margin: 6px 0;
+      margin: 5px 0;
       font-size: 1rem;
     }
 
@@ -71,13 +67,27 @@
       margin-top: 15px;
       font-weight: bold;
       color: #00ffc8;
-      font-size: 1.1rem;
     }
 
     .order-user {
       margin-bottom: 10px;
       color: #00bfff;
       font-weight: bold;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: red;
+      color: white;
+      border: none;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 50%;
+      cursor: pointer;
+      width: 25px;
+      height: 25px;
     }
 
     @media (max-width: 600px) {
@@ -105,60 +115,75 @@
   <div id="order-history"></div>
 
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDWoalk1LmrdNdngG_jCA2wzDu0_rxR6Oc",
-      authDomain: "web-b43.firebaseapp.com",
-      databaseURL: "https://web-b43-default-rtdb.firebaseio.com",
-      projectId: "web-b43",
-      storageBucket: "web-b43.appspot.com",
-      messagingSenderId: "1043699448922",
-      appId: "1:1043699448922:web:75aca8f58416f651e4ec63",
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyDWoalk1LmrdNdngG_jCA2wzDu0_rxR6Oc",
+    authDomain: "web-b43.firebaseapp.com",
+    databaseURL: "https://web-b43-default-rtdb.firebaseio.com",
+    projectId: "web-b43",
+    storageBucket: "web-b43.appspot.com",
+    messagingSenderId: "1043699448922",
+    appId: "1:1043699448922:web:75aca8f58416f651e4ec63",
+  };
 
-    firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 
-    const dbRef = firebase.database().ref("orders");
-    const orderHistoryEl = document.getElementById("order-history");
-    const successMsg = document.getElementById("success-msg");
+  const dbRef = firebase.database().ref("orders");
+  const orderHistoryEl = document.getElementById("order-history");
+  const successMsg = document.getElementById("success-msg");
 
-    // Show success message for 3 seconds
-    successMsg.style.display = "block";
-    setTimeout(() => {
-      successMsg.style.display = "none";
-    }, 3000);
+  successMsg.style.display = "block";
+  setTimeout(() => {
+    successMsg.style.display = "none";
+  }, 3000);
 
-    dbRef.once("value", snapshot => {
-      const data = snapshot.val();
+  dbRef.once("value", snapshot => {
+    const data = snapshot.val();
 
-      if (!data) {
-        orderHistoryEl.innerHTML = "<p style='color: white; text-align: center;'>No past orders found.</p>";
-        return;
-      }
+    if (!data) {
+      orderHistoryEl.innerHTML = "<p style='color: white; text-align: center;'>No past orders found.</p>";
+      return;
+    }
 
-      const orders = Object.values(data);
+    Object.entries(data).forEach(([orderId, order], index) => {
+      const orderDiv = document.createElement("div");
+      orderDiv.className = "order";
+      orderDiv.id = `order-${orderId}`;
 
-      orders.forEach((order, index) => {
-        const orderDiv = document.createElement("div");
-        orderDiv.className = "order";
+      let total = 0;
 
-        let total = 0;
+      const itemsHTML = order.items.map(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        return `<p>${item.name} × ${item.quantity} = ₹${itemTotal}</p>`;
+      }).join("");
 
-        const itemsHTML = order.items.map(item => {
-          const itemTotal = item.price * item.quantity;
-          total += itemTotal;
-          return `<p>${item.name} × ${item.quantity} = ₹${itemTotal}</p>`;
-        }).join("");
+      orderDiv.innerHTML = `
+        <h2>Order #${index + 1}</h2>
+        <p class="order-user">👤 Name: ${order.username || "Guest"}</p>
+        ${itemsHTML}
+        <p class="order-total">Total Bill: ₹${total}</p>
+        <button style="margin-top: 10px; padding: 8px 12px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer;" onclick="removeOrder('${orderId}')">🗑️ Remove</button>
+      `;
 
-        orderDiv.innerHTML = `
-          <h2>Order #${index + 1}</h2>
-          <p class="order-user">👤 Name: ${order.username || "Guest"}</p>
-          ${itemsHTML}
-          <p class="order-total">Total Bill: ₹${total}</p>
-        `;
-
-        orderHistoryEl.appendChild(orderDiv);
-      });
+      orderHistoryEl.appendChild(orderDiv);
     });
-  </script>
+  });
+
+  function removeOrder(orderId) {
+    if (confirm("Are you sure you want to delete this order?")) {
+      firebase.database().ref("orders/" + orderId).remove()
+        .then(() => {
+          const el = document.getElementById(`order-${orderId}`);
+          if (el) el.remove();
+          alert("Order removed successfully.");
+        })
+        .catch(error => {
+          console.error("Error deleting order:", error);
+          alert("Failed to delete order.");
+        });
+    }
+  }
+</script>
+
 </body>
 </html>

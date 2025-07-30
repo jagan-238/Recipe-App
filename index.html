@@ -14,6 +14,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fffdf9;
       color: #333;
+      padding-top: 70px; /* Space for fixed navbar */
     }
 
     nav {
@@ -23,6 +24,10 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
     }
 
     nav h1 {
@@ -131,8 +136,6 @@
       <a href="index.html">Home</a>
       <a href="signup.html">Signup</a>
       <a href="contact.html">Contact</a>
-      
-      
     </div>
   </nav>
 
@@ -142,9 +145,7 @@
   </div>
 
   <div class="flexbox">
-
-    <!-- START All food items in one FLEX container -->
-
+    <!-- All food cards -->
     <div class="card">
       <img src="https://joyfoodsunshine.com/wp-content/uploads/2022/08/fluffy-pancakes-from-scratch-1.jpg" alt="Pancakes">
       <p class="quote">“Start your day sunny side up.”</p>
@@ -244,9 +245,6 @@
       <img src="https://tse3.mm.bing.net/th/id/OIP.KC9dzqC-dXwYPgMFVpYOfwHaE7?pid=Api&P=0&h=220" alt="Cocktails">
       <p class="quote">“Raise a toast to taste.”</p>
     </div>
-
-    <!-- Add more cards below if needed -->
-
   </div>
 
   <footer>
@@ -255,3 +253,4 @@
 
 </body>
 </html>
+
